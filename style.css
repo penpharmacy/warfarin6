@@ -1,0 +1,39 @@
+
+body {
+  font-family: sans-serif;
+  background: #fff0f5;
+  color: #333;
+  padding: 20px;
+}
+.container {
+  max-width: 600px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+h1 {
+  color: deeppink;
+}
+button {
+  background-color: deeppink;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  font-size: 16px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.circle {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin: 2px;
+}
+.c3 { background: dodgerblue; }
+.c5 { background: deeppink; }
+.half {
+  background: linear-gradient(to right, dodgerblue 50%, white 50%);
+}
