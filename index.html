@@ -17,16 +17,34 @@
     text-align: center;
   }
   .container {
-    max-width: 900px;
+    max-width: 1000px;
     margin: auto;
   }
+  .section-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
   .section {
+    flex: 2;
     background: #ffffff;
     border: 2px solid #f8bbd0;
     border-radius: 15px;
     padding: 20px;
-    margin-bottom: 20px;
     box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+  }
+  .result-box {
+    flex: 1;
+    background: #fce4ec;
+    border: 2px solid #f8bbd0;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+    font-weight: bold;
+    text-align: center;
+    display: none;
   }
   .section h3 {
     margin-top: 0;
@@ -56,15 +74,6 @@
   button:hover {
     background: #d81b60;
   }
-  .result {
-    margin-top: 15px;
-    padding: 15px;
-    border-radius: 12px;
-    font-weight: bold;
-    text-align: center;
-  }
-  #dailyResult { background: #fce4ec; color: #880e4f; }
-  #weeklyResult { background: #f8bbd0; color: #6a1b9a; }
   .days-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -84,129 +93,133 @@
   <h2>โปรแกรมคำนวณขนาดยา Warfarin</h2>
 
   <!-- รายวัน -->
-  <div class="section">
-    <h3>กรอกจำนวนเม็ดรายวัน</h3>
-    <div class="days-grid">
-      <div>จันทร์<br>2mg <input type="number" step="0.5" id="d2_0"> <br>3mg <input type="number" step="0.5" id="d3_0"></div>
-      <div>อังคาร<br>2mg <input type="number" step="0.5" id="d2_1"> <br>3mg <input type="number" step="0.5" id="d3_1"></div>
-      <div>พุธ<br>2mg <input type="number" step="0.5" id="d2_2"> <br>3mg <input type="number" step="0.5" id="d3_2"></div>
-      <div>พฤหัส<br>2mg <input type="number" step="0.5" id="d2_3"> <br>3mg <input type="number" step="0.5" id="d3_3"></div>
-      <div>ศุกร์<br>2mg <input type="number" step="0.5" id="d2_4"> <br>3mg <input type="number" step="0.5" id="d3_4"></div>
-      <div>เสาร์<br>2mg <input type="number" step="0.5" id="d2_5"> <br>3mg <input type="number" step="0.5" id="d3_5"></div>
-      <div>อาทิตย์<br>2mg <input type="number" step="0.5" id="d2_6"> <br>3mg <input type="number" step="0.5" id="d3_6"></div>
+  <div class="section-wrapper">
+    <div class="section">
+      <h3>กรอกจำนวนเม็ดรายวัน</h3>
+      <div class="days-grid">
+        <div>จันทร์<br>2mg <input type="number" step="0.5" id="d2_0"> <br>3mg <input type="number" step="0.5" id="d3_0"></div>
+        <div>อังคาร<br>2mg <input type="number" step="0.5" id="d2_1"> <br>3mg <input type="number" step="0.5" id="d3_1"></div>
+        <div>พุธ<br>2mg <input type="number" step="0.5" id="d2_2"> <br>3mg <input type="number" step="0.5" id="d3_2"></div>
+        <div>พฤหัส<br>2mg <input type="number" step="0.5" id="d2_3"> <br>3mg <input type="number" step="0.5" id="d3_3"></div>
+        <div>ศุกร์<br>2mg <input type="number" step="0.5" id="d2_4"> <br>3mg <input type="number" step="0.5" id="d3_4"></div>
+        <div>เสาร์<br>2mg <input type="number" step="0.5" id="d2_5"> <br>3mg <input type="number" step="0.5" id="d3_5"></div>
+        <div>อาทิตย์<br>2mg <input type="number" step="0.5" id="d2_6"> <br>3mg <input type="number" step="0.5" id="d3_6"></div>
+      </div>
     </div>
+    <div id="dailyResult" class="result-box"></div>
   </div>
 
-  <!-- เพิ่มส่วนคำนวณแบบคูณวัน -->
-  <div class="section">
-    <h3>คำนวณจำนวนเม็ดแบบคูณวัน (รองรับทศนิยม)</h3>
-    <label>Warfarin 3 mg</label><br>
-    จำนวนเม็ด: <input type="number" step="0.5" id="w3_line1"> × วันใน 7 วัน <input type="number" step="0.5" id="w3_day1"><br>
-    จำนวนเม็ด: <input type="number" step="0.5" id="w3_line2"> × วันใน 7 วัน <input type="number" step="0.5" id="w3_day2"><br><br>
+  <!-- คูณวัน -->
+  <div class="section-wrapper">
+    <div class="section">
+      <h3>คำนวณจำนวนเม็ดแบบคูณวัน</h3>
+      <label>Warfarin 3 mg</label><br>
+      จำนวนเม็ด: <input type="number" step="0.5" id="w3_line1"> × วันใน 7 วัน <input type="number" step="0.5" id="w3_day1"><br>
+      จำนวนเม็ด: <input type="number" step="0.5" id="w3_line2"> × วันใน 7 วัน <input type="number" step="0.5" id="w3_day2"><br><br>
 
-    <label>Warfarin 2 mg</label><br>
-    จำนวนเม็ด: <input type="number" step="0.5" id="w2_line1"> × วันใน 7 วัน <input type="number" step="0.5" id="w2_day1"><br>
-    จำนวนเม็ด: <input type="number" step="0.5" id="w2_line2"> × วันใน 7 วัน <input type="number" step="0.5" id="w2_day2">
+      <label>Warfarin 2 mg</label><br>
+      จำนวนเม็ด: <input type="number" step="0.5" id="w2_line1"> × วันใน 7 วัน <input type="number" step="0.5" id="w2_day1"><br>
+      จำนวนเม็ด: <input type="number" step="0.5" id="w2_line2"> × วันใน 7 วัน <input type="number" step="0.5" id="w2_day2">
+    </div>
+    <div id="multiResult" class="result-box"></div>
   </div>
 
-  <!-- ทางเลือก -->
-  <div class="section">
-    <h3>กรอกจำนวนเม็ดรวมต่อสัปดาห์ (ทางเลือก)</h3>
-    2 mg: <input type="number" id="weekly2" step="0.5"> เม็ด<br>
-    3 mg: <input type="number" id="weekly3" step="0.5"> เม็ด
+  <!-- รวมต่อสัปดาห์ -->
+  <div class="section-wrapper">
+    <div class="section">
+      <h3>กรอกจำนวนเม็ดรวมต่อสัปดาห์ (ทางเลือก)</h3>
+      2 mg: <input type="number" id="weekly2" step="0.5"> เม็ด<br>
+      3 mg: <input type="number" id="weekly3" step="0.5"> เม็ด
+    </div>
+    <div id="weeklyResult" class="result-box"></div>
   </div>
 
-  <!-- ค่าเดิม -->
+  <!-- ค่าเปรียบเทียบ -->
   <div class="section">
     <h3>ค่าเปรียบเทียบ</h3>
     ค่าเดิม (mg/สัปดาห์): <input type="number" id="oldDose" step="0.5"><br><br>
-    จำนวนวันนัด: <input type="number" id="numDays" value="7" min="1">
-    <br><br>
+    วันนัด (วัน): <input type="number" id="numDays" value="7" min="1"><br><br>
     <button onclick="calculate()">คำนวณ</button>
     <button onclick="clearAll()">ล้างข้อมูล</button>
   </div>
-
-  <!-- สรุปผล -->
-  <div id="dailyResult" class="result" style="display:none;"></div>
-  <div id="weeklyResult" class="result" style="display:none;"></div>
 </div>
 
 <script>
 function calculate(){
   let oldDose = parseFloat(document.getElementById("oldDose").value) || 0;
-  let numDays = parseInt(document.getElementById("numDays").value) || 7;
+  let numDays = parseFloat(document.getElementById("numDays").value) || 7;
+  let ratio = numDays / 7;
 
-  // ---- แบบรายวัน ----
+  // --- รายวัน ---
   let total2 = 0, total3 = 0;
   for(let i=0;i<7;i++){
     total2 += parseFloat(document.getElementById("d2_"+i).value) || 0;
     total3 += parseFloat(document.getElementById("d3_"+i).value) || 0;
   }
-
-  // ---- แบบคูณวัน ----
-  let w3_total = ((parseFloat(document.getElementById("w3_line1").value)||0) * (parseFloat(document.getElementById("w3_day1").value)||0))
-               + ((parseFloat(document.getElementById("w3_line2").value)||0) * (parseFloat(document.getElementById("w3_day2").value)||0));
-  let w2_total = ((parseFloat(document.getElementById("w2_line1").value)||0) * (parseFloat(document.getElementById("w2_day1").value)||0))
-               + ((parseFloat(document.getElementById("w2_line2").value)||0) * (parseFloat(document.getElementById("w2_day2").value)||0));
-
-  total2 += w2_total;
-  total3 += w3_total;
-
-  let totalMg = total2*2 + total3*3;
-
-  if(totalMg>0){
-    let diff = totalMg - oldDose;
+  let totalDailyMg = total2*2 + total3*3;
+  if(totalDailyMg>0){
+    let diff = totalDailyMg - oldDose;
     let percent = oldDose ? ((diff/oldDose)*100).toFixed(1) : 0;
-
-    // คำนวณจำนวนเม็ดตามวันนัด
-    let pills2 = Math.ceil(total2 * numDays / 7);
-    let pills3 = Math.ceil(total3 * numDays / 7);
-
+    let total2Dispense = Math.ceil(total2 * ratio);
+    let total3Dispense = Math.ceil(total3 * ratio);
     document.getElementById("dailyResult").style.display="block";
     document.getElementById("dailyResult").innerHTML =
-      `<h3>สรุปผลรวม</h3>
-       รวม: ${totalMg.toFixed(1)} mg/สัปดาห์<br>
-       ผลต่าง: ${diff.toFixed(1)} mg (${percent}%)<br>
-       จำนวนเม็ดที่จะจ่าย (${numDays} วัน): 
-       2 mg = ${pills2} เม็ด, 
-       3 mg = ${pills3} เม็ด`;
-  } else {
-    document.getElementById("dailyResult").style.display="none";
-  }
+      `<h4>สรุปผลรายวัน</h4>
+      ${totalDailyMg.toFixed(1)} mg/สัปดาห์<br>
+      ผลต่าง: ${diff.toFixed(1)} mg (${percent}%)<br><br>
+      <u>จำนวนเม็ดยาที่ต้องจ่าย (${numDays} วัน)</u><br>
+      Warfarin 2 mg: ${total2Dispense} เม็ด<br>
+      Warfarin 3 mg: ${total3Dispense} เม็ด`;
+  } else document.getElementById("dailyResult").style.display="none";
 
-  // ---- แบบทางเลือก ----
+  // --- คูณวัน ---
+  let w3_total = ((parseFloat(document.getElementById("w3_line1").value)||0)*(parseFloat(document.getElementById("w3_day1").value)||0))
+               + ((parseFloat(document.getElementById("w3_line2").value)||0)*(parseFloat(document.getElementById("w3_day2").value)||0));
+  let w2_total = ((parseFloat(document.getElementById("w2_line1").value)||0)*(parseFloat(document.getElementById("w2_day1").value)||0))
+               + ((parseFloat(document.getElementById("w2_line2").value)||0)*(parseFloat(document.getElementById("w2_day2").value)||0));
+  let totalMultiMg = w3_total*3 + w2_total*2;
+  if(totalMultiMg>0){
+    let diff = totalMultiMg - oldDose;
+    let percent = oldDose ? ((diff/oldDose)*100).toFixed(1) : 0;
+    let w2Dispense = Math.ceil(w2_total * ratio);
+    let w3Dispense = Math.ceil(w3_total * ratio);
+    document.getElementById("multiResult").style.display="block";
+    document.getElementById("multiResult").innerHTML =
+      `<h4>สรุปคูณวัน</h4>
+      ${totalMultiMg.toFixed(1)} mg/สัปดาห์<br>
+      ผลต่าง: ${diff.toFixed(1)} mg (${percent}%)<br><br>
+      <u>จำนวนเม็ดยาที่ต้องจ่าย (${numDays} วัน)</u><br>
+      Warfarin 2 mg: ${w2Dispense} เม็ด<br>
+      Warfarin 3 mg: ${w3Dispense} เม็ด`;
+  } else document.getElementById("multiResult").style.display="none";
+
+  // --- รวมต่อสัปดาห์ ---
   let weekly2 = parseFloat(document.getElementById("weekly2").value) || 0;
   let weekly3 = parseFloat(document.getElementById("weekly3").value) || 0;
   let weeklyMg = weekly2*2 + weekly3*3;
-
   if(weeklyMg>0){
-    let diff2 = weeklyMg - oldDose;
-    let percent2 = oldDose ? ((diff2/oldDose)*100).toFixed(1) : 0;
-
-    let pills2b = Math.ceil(weekly2 * numDays / 7);
-    let pills3b = Math.ceil(weekly3 * numDays / 7);
-
+    let diff = weeklyMg - oldDose;
+    let percent = oldDose ? ((diff/oldDose)*100).toFixed(1) : 0;
+    let w2Dispense = Math.ceil(weekly2 * ratio);
+    let w3Dispense = Math.ceil(weekly3 * ratio);
     document.getElementById("weeklyResult").style.display="block";
     document.getElementById("weeklyResult").innerHTML =
-      `<h3>สรุป (ทางเลือก)</h3>
-       รวม: ${weeklyMg.toFixed(1)} mg/สัปดาห์<br>
-       ผลต่าง: ${diff2.toFixed(1)} mg (${percent2}%)<br>
-       จำนวนเม็ดที่จะจ่าย (${numDays} วัน): 
-       2 mg = ${pills2b} เม็ด, 
-       3 mg = ${pills3b} เม็ด`;
-  } else {
-    document.getElementById("weeklyResult").style.display="none";
-  }
+      `<h4>สรุปทางเลือก</h4>
+      ${weeklyMg.toFixed(1)} mg/สัปดาห์<br>
+      ผลต่าง: ${diff.toFixed(1)} mg (${percent}%)<br><br>
+      <u>จำนวนเม็ดยาที่ต้องจ่าย (${numDays} วัน)</u><br>
+      Warfarin 2 mg: ${w2Dispense} เม็ด<br>
+      Warfarin 3 mg: ${w3Dispense} เม็ด`;
+  } else document.getElementById("weeklyResult").style.display="none";
 }
 
 function clearAll(){
-  const ids = document.querySelectorAll("input[type='number']");
-  ids.forEach(i => i.value = "");
+  document.querySelectorAll("input[type='number']").forEach(el => el.value="");
   document.getElementById("numDays").value = 7;
-  document.getElementById("dailyResult").style.display="none";
-  document.getElementById("weeklyResult").style.display="none";
+  document.querySelectorAll(".result-box").forEach(box => box.style.display="none");
 }
 </script>
 </body>
 </html>
+
 
