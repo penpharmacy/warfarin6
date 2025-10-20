@@ -1,579 +1,211 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <!-- Cropper -->
-    <!-- Auto Numeric -->
-    <!-- DataTables datetime sort -->
-  </head>
-  <body class="sidebar-mini skin-blue">
-    <div class="wrapper">
-      <header class="main-header norpint">
-        <a href="javascript:void(0);" class="logo">
-          <span class="logo-mini">
-            <img style="max-height:40px;" src="../../assets/images/logomenuBarSm2.png">
-          </span>
-          <span class="logo-lg">
-            <img style="max-height:40px;" src="../../assets/images/logomenuBar2.png">
-          </span>
-        </a>
-        <nav class="navbar navbar-static-top" role="navigation">
-          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-            <span class="sr-only">Toggle navigation</span>
-          </a>
-          <div class="navbar-custom-menu">
-            <ul class="nav navbar-nav">
-            </ul>
-          </div>
-        </nav>
-      </header>
-      <aside class="main-sidebar norpint">
-        <section class="sidebar" style="height: auto;">
-          <ul class="sidebar-menu">
-            <li class="header">Calculate</li>
-          </ul>
-        </section>
-      </aside>
-<aside>
-</aside>
-<div class="content-wrapper" style="min-height: 663px;">
-  <section class="content-header norpint">
-    <h1>Warfarin Dosing Calculator</h1>
-  </section>
-  <section class="content">
-    <div class="col-sm-6 col-xs-12 space10 norpint">
-      <div class="input-group">
-        <span class="input-group-addon">Total Weekly Dose</span>
-        <input class="form-control" type="number" step="0.25" min="5.25" max="70" value="9" id="wkdose">
-        <span class="input-group-addon">mg</span>
-      </div>
-    </div>
-
-    <div class="col-sm-6 col-xs-12 space10 norpint">
-      <div class="input-group">
-        <span class="input-group-addon">นัดติดตาม</span>
-        <select class="form-control select2 select2-hidden-accessible" id="wkset" tabindex="-1" aria-hidden="true">
-          <option>1</option>
-          <option selected>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-          <option>6</option>
-          <option>7</option>
-          <option>8</option>
-          <option>9</option>
-          <option>10</option>
-        </select>
-
-        <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 646px;">
-          <span class="selection">
-            <span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-wkset-container">
-              <span class="select2-selection__rendered" id="select2-wkset-container" title="2">2</span>
-              <span class="select2-selection__arrow" role="presentation">
-                <b role="presentation"></b>
-              </span>
-            </span>
-          </span>
-          <span class="dropdown-wrapper" aria-hidden="true"></span>
-        </span>
-      </div>
-    </div>
-  </section>
-</div>
-<div class="col-sm-12 col-xs-12 centerSmallsize norpint">
-  <div class="btn-group">
-    <button id="mg_p20" onclick="showdata(6,1)" class="btn btn-success">
-      "+20% "
-      <span id="mg_p20_txt">10.80</span>
-    </button>
-    <button id="mg_p10" onclick="showdata(5,1)" class="btn btn-success">
-      "+10% "
-      <span id="mg_p10_txt">9.90</span>
-    </button>
-    <button id="mg_p5" onclick="showdata(4,1)" class="btn btn-success">
-      "+5% "
-      <span id="mg_p5_txt">9.45</span>
-    </button>
-  </div>
-
-  <div class="clearBlock9"></div>
-
-  <button id="mg_0" onclick="showdata(3,1)" class="btn btn-primary">
-    "ขนาดเดิม "
-    <span id="mg_0_txt">9.00</span>
-  </button>
-
-  <div class="clearBlock9"></div>
-
-  <div class="btn-group">
-    <button id="mg_m5" onclick="showdata(2,0)" class="btn btn-danger">
-      "-5% "
-      <span id="mg_m5_txt">8.55</span>
-    </button>
-    <button id="mg_m10" onclick="showdata(1,0)" class="btn btn-danger">
-      "-10% "
-      <span id="mg_m10_txt">8.10</span>
-    </button>
-    <button id="mg_m20" onclick="showdata(0,0)" class="btn btn-danger">
-      "-20% "
-      <span id="mg_m20_txt">7.20</span>
-    </button>
-  </div>
-</div>
-<div class="col-sm-12 col-xs-12 norpint">
-  <div class="input-group">
-    <span class="input-group-addon">Total Weekly Dose Select</span>
-    <select class="form-control select2 select2-hidden-accessible" id="doselist" tabindex="-1" aria-hidden="true">
-      <option>5.25</option>
-      <option>5.5</option>
-      <option>6</option>
-      <option>6.5</option>
-      <option>7</option>
-      <option>7.5</option>
-      <option>8</option>
-      <option>8.75</option>
-      <option>9</option>
-      <option>9.5</option>
-      <option>10</option>
-      <option>10.5</option>
-      <option>11</option>
-      <option>11.5</option>
-      <option>12</option>
-      <option>12.5</option>
-      <option>13</option>
-      <option>13.5</option>
-      <option>14</option>
-      <option>14.5</option>
-      <option>15</option>
-      <option>15.75</option>
-      <option>16</option>
-      <option>16.25</option>
-      <option>17</option>
-      <option>17.5</option>
-      <option>18</option>
-      <option>18.5</option>
-      <option>19</option>
-    </select>
-  </div>
-</div>
-<option>20.5</option>
-<option>21</option>
-<option>21.5</option>
-<option>22</option>
-<option>22.5</option>
-<option>23</option>
-<option>23.5</option>
-<option>24</option>
-<option>24.5</option>
-<option>25</option>
-<option>25.5</option>
-<option>26</option>
-<option>26.5</option>
-<option>27</option>
-<option>27.5</option>
-<option>28</option>
-<option>28.5</option>
-<option>29</option>
-<option>29.5</option>
-<option>30</option>
-<option>30.5</option>
-<option>31</option>
-<option>31.5</option>
-<option>32</option>
-<option>32.5</option>
-<option>33</option>
-<option>33.5</option>
-<option>34</option>
-<option>34.5</option>
-<option>35</option>
-<option>35.5</option>
-<option>36</option>
-<option>36.5</option>
-<option>37</option>
-<option>37.5</option>
-<option>38</option>
-<option>38.5</option>
-<option>39</option>
-<option>39.5</option>
-<option>40</option>
-<option>40.5</option>
-<option>41</option>
-<option>41.5</option>
-<option>42</option>
-<option>42.5</option>
-<option>43</option>
-<option>43.5</option>
-<option>44</option>
-<option>44.5</option>
-<option>45</option>
-<option>45.5</option>
-<option>52.5</option>
-<option>56</option>
-<option>57</option>
-<option>58</option>
-<option>60</option>
-<option>62.5</option>
-<option>63</option>
-<option>65</option>
-<option>66.5</option>
-<option>67.5</option>
-<option>70</option>
-<div class="col-sm-12 col-xs-12">
-  <button type="button" class="btn btn-success pull-right space10 btn-flat" onclick="window.print();">
-    <i class="fa fa-print"></i> Print Table
-  </button>
-  <table class="table table-bordered tableDays" id="section-to-print">
-    <thead>
-      <tr>
-        <th class="monday">จันทร์</th>
-        <th class="tuesday">อังคาร</th>
-        <th class="wednesday">พุธ</th>
-        <th class="thursday">พฤหัส</th>
-        <th class="friday">ศุกร์</th>
-        <th class="saturday">เสาร์</th>
-        <th class="sunday">อาทิตย์</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td id="d0">
-          <img src="/assets/warfarin/b0.png" style="max-width: 20px;">
-        </td>
-        <td id="d1">
-          <img src="/assets/warfarin/b0.png" style="max-width: 20px;">
-        </td>
-        <td id="d2">
-          <img src="/assets/warfarin/b0.png" style="max-width: 20px;">
-        </td>
-        <td id="d3">
-          <img src="/assets/warfarin/b0.png" style="max-width: 20px;">
-        </td>
-        <td id="d4">
-          <img src="/assets/warfarin/b0.png" style="max-width: 20px;">
-        </td>
-        <td id="d5">
-          <img src="/assets/warfarin/r2.png" style="max-width: 20px;">
-        </td>
-        <td id="d6">
-          <img src="/assets/warfarin/r2.png" style="max-width: 20px;">
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<table class="table table-bordered tableDays" id="section-to-print">
-  <thead>
-    <tr>
-      <th class="monday">จันทร์</th>
-      <th class="tuesday">อังคาร</th>
-      <th class="wednesday">พุธ</th>
-      <th class="thursday">พฤหัส</th>
-      <th class="friday">ศุกร์</th>
-      <th class="saturday">เสาร์</th>
-      <th class="sunday">อาทิตย์</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td id="d0"><img src="/assets/warfarin/b0.png" style="max-width: 20px;"></td>
-      <td id="d1"><img src="/assets/warfarin/b0.png" style="max-width: 20px;"></td>
-      <td id="d2"><img src="/assets/warfarin/b0.png" style="max-width: 20px;"></td>
-      <td id="d3"><img src="/assets/warfarin/b0.png" style="max-width: 20px;"></td>
-      <td id="d4"><img src="/assets/warfarin/b0.png" style="max-width: 20px;"></td>
-      <td id="d5"><img src="/assets/warfarin/r2.png" style="max-width: 20px;"></td>
-      <td id="d6"><img src="/assets/warfarin/r2.png" style="max-width: 20px;"></td>
-    </tr>
-  </tbody>
-</table>
-
-<div class="info-box">
-  <span class="info-box-icon bg-green">
-    <i class="fa fa-flag-o"></i>
-  </span>
-  <div class="info-box-content">
-    <span class="info-box-text">รวมยาที่ต้องจ่าย</span>
-    <span class="info-box-number">
-      <img src="/assets/warfarin/b0.png" style="max-width: 20px; vertical-align: middle; margin-top: -3px;"> 3mg
-      <span id="pill3mg">10</span> เม็ด
-    </span>
-    <span class="info-box-number">
-      <img src="/assets/warfarin/r0.png" style="max-width: 20px; vertical-align: middle; margin-top: -3px;"> 5mg
-      <span id="pill5mg">2</span> เม็ด
-    </span>
-  </div>
-</div>
-<table class="table table-bordered tableDays" id="section-to-print">
-  <thead>
-    <tr>
-      <th class="monday">จันทร์</th>
-      <th class="tuesday">อังคาร</th>
-      <th class="wednesday">พุธ</th>
-      <th class="thursday">พฤหัส</th>
-      <th class="friday">ศุกร์</th>
-      <th class="saturday">เสาร์</th>
-      <th class="sunday">อาทิตย์</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td id="d0"><img src="/assets/warfarin/b0.png" style="max-width: 20px;"></td>
-      <td id="d1"><img src="/assets/warfarin/b0.png" style="max-width: 20px;"></td>
-      <td id="d2"><img src="/assets/warfarin/b0.png" style="max-width: 20px;"></td>
-      <td id="d3"><img src="/assets/warfarin/b0.png" style="max-width: 20px;"></td>
-      <td id="d4"><img src="/assets/warfarin/b0.png" style="max-width: 20px;"></td>
-      <td id="d5"><img src="/assets/warfarin/r2.png" style="max-width: 20px;"></td>
-      <td id="d6"><img src="/assets/warfarin/r2.png" style="max-width: 20px;"></td>
-    </tr>
-  </tbody>
-</table>
-
-<div class="info-box">
-  <span class="info-box-icon bg-green">
-    <i class="fa fa-flag-o"></i>
-  </span>
-  <div class="info-box-content">
-    <span class="info-box-text">รวมยาที่ต้องจ่าย</span>
-    <span class="info-box-number">
-      <img src="/assets/warfarin/b0.png" style="max-width: 20px; vertical-align: middle; margin-top: -3px;"> 3mg
-      <span id="pill3mg">10</span> เม็ด
-    </span>
-    <span class="info-box-number">
-      <img src="/assets/warfarin/r0.png" style="max-width: 20px; vertical-align: middle; margin-top: -3px;"> 5mg
-      <span id="pill5mg">2</span> เม็ด
-    </span>
-  </div>
-</div>
-<!-- Footer -->
-<strong>
-  พัฒนาโดย  
-  <a href="http://www.gusarea.co.th" target="_blank">บริษัท กัสเอเรีย จำกัด</a> 
-  ร่วมกับ 
-  <a href="https://www.facebook.com/%E0%B8%82%E0%B8%99%E0%B8%B2%E0%B8%94..บ2%E0%B8%99%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B8%9E%E0%B8%B2%E0%B8%99-236175713505081/" target="_blank">
-    กลุ่มงานเภสัชกรรมและคุ้มครองผู้บริโภค รพ.ชัยนาทนเรนทร โดย นภา ชิตวนา จักรโรจน์ธนากุล
-  </a>
-</strong>
-
-<!-- Select2 Plugin -->
-<script src="../assets/plugins/select2/select2.full.min.js"></script>
-
-<!-- Main Script -->
-<script type="text/javascript">
-$(document).ready(function () {
-  $('.select2').select2();
-});
-
-var mg_list = [0, 0, 0, 0, 0, 0, 0];
-var wfdata;
-var sum_mg3 = 0;
-var sum_mg5 = 0;
-
-$(document).ready(function () {
-  init_data();
-  calpercen();
-});
-
-$("#wkdose").change(function () {
-  calpercen();
-});
-
-$("#wkset").change(function () {
-  calpill();
-});
-</script>
-$("#doselist").change(function () {
-  setdosetable();
-});
-
-function init_doselist() {
-  for (var i = 0; i < wfdata.length; i++) {
-    $("#doselist").append("<option>" + wfdata[i].mg + "</option>");
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>คำนวณ Warfarin</title>
+<style>
+  body {
+    font-family: "Prompt", sans-serif;
+    background-color: #fff0f5;
+    margin: 0;
+    padding: 20px;
+    color: #333;
   }
-}
-
-function setdosetable() {
-  var mg_select = $("#doselist").val();
-  var i_select = 0;
-  for (var i = 0; i < wfdata.length; i++) {
-    if (wfdata[i].mg <= mg_select) {
-      i_select = i;
-    } else {
-      break;
-    }
+  h2 {
+    color: #c2185b;
+    text-align: center;
   }
-  display_data(i_select);
-}
+  .container {
+    max-width: 900px;
+    margin: auto;
+  }
+  .section {
+    background: #ffffff;
+    border: 2px solid #f8bbd0;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+  }
+  .section h3 {
+    margin-top: 0;
+    color: #ad1457;
+    border-bottom: 2px solid #f48fb1;
+    padding-bottom: 5px;
+  }
+  input {
+    padding: 6px;
+    border: 1px solid #f8bbd0;
+    border-radius: 8px;
+    width: 80px;
+    margin: 3px;
+    text-align: center;
+  }
+  button {
+    background: #ec407a;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+  }
+  button:hover {
+    background: #d81b60;
+  }
+  .result {
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 12px;
+    font-weight: bold;
+    text-align: center;
+  }
+  #dailyResult { background: #fce4ec; color: #880e4f; }
+  #weeklyResult { background: #f8bbd0; color: #6a1b9a; }
+  .days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .days-grid div {
+    background: #fce4ec;
+    border-radius: 10px;
+    padding: 8px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>โปรแกรมคำนวณขนาดยา Warfarin</h2>
 
-function showdata(index, mode) {
-  // mode 1 = ด้าน+, 0 = ด้าน-
-  var mg_select = mg_list[index];
-  var i_select = 0;
+  <!-- รายวัน -->
+  <div class="section">
+    <h3>กรอกจำนวนเม็ดรายวัน</h3>
+    <div class="days-grid">
+      <div>จันทร์<br>2mg <input type="number" step="0.5" id="d2_0"> <br>3mg <input type="number" step="0.5" id="d3_0"></div>
+      <div>อังคาร<br>2mg <input type="number" step="0.5" id="d2_1"> <br>3mg <input type="number" step="0.5" id="d3_1"></div>
+      <div>พุธ<br>2mg <input type="number" step="0.5" id="d2_2"> <br>3mg <input type="number" step="0.5" id="d3_2"></div>
+      <div>พฤหัส<br>2mg <input type="number" step="0.5" id="d2_3"> <br>3mg <input type="number" step="0.5" id="d3_3"></div>
+      <div>ศุกร์<br>2mg <input type="number" step="0.5" id="d2_4"> <br>3mg <input type="number" step="0.5" id="d3_4"></div>
+      <div>เสาร์<br>2mg <input type="number" step="0.5" id="d2_5"> <br>3mg <input type="number" step="0.5" id="d3_5"></div>
+      <div>อาทิตย์<br>2mg <input type="number" step="0.5" id="d2_6"> <br>3mg <input type="number" step="0.5" id="d3_6"></div>
+    </div>
+  </div>
 
-  if (mode == 1) {
-    for (var i = 0; i < wfdata.length; i++) {
-      if (wfdata[i].mg <= mg_select) {
-        i_select = i;
-      } else {
-        break;
-      }
-    }
+  <!-- เพิ่มส่วนคำนวณแบบคูณวัน -->
+  <div class="section">
+    <h3>คำนวณจำนวนเม็ดแบบคูณวัน (รองรับทศนิยม)</h3>
+    <label>Warfarin 3 mg</label><br>
+    บรรทัดที่ 1: <input type="number" step="0.5" id="w3_line1"> × วันใน 7 วัน <input type="number" step="0.5" id="w3_day1"><br>
+    บรรทัดที่ 2: <input type="number" step="0.5" id="w3_line2"> × วันใน 7 วัน <input type="number" step="0.5" id="w3_day2"><br><br>
+
+    <label>Warfarin 2 mg</label><br>
+    บรรทัดที่ 1: <input type="number" step="0.5" id="w2_line1"> × วันใน 7 วัน <input type="number" step="0.5" id="w2_day1"><br>
+    บรรทัดที่ 2: <input type="number" step="0.5" id="w2_line2"> × วันใน 7 วัน <input type="number" step="0.5" id="w2_day2">
+  </div>
+
+  <!-- ทางเลือก -->
+  <div class="section">
+    <h3>กรอกจำนวนเม็ดรวมต่อสัปดาห์ (ทางเลือก)</h3>
+    2 mg: <input type="number" id="weekly2" step="0.5"> เม็ด<br>
+    3 mg: <input type="number" id="weekly3" step="0.5"> เม็ด
+  </div>
+
+  <!-- ค่าเดิม -->
+  <div class="section">
+    <h3>ค่าเปรียบเทียบ</h3>
+    ค่าเดิม (mg/สัปดาห์): <input type="number" id="oldDose" step="0.5"><br><br>
+    จำนวนวันนัด: <input type="number" id="numDays" value="7" min="1">
+    <br><br>
+    <button onclick="calculate()">คำนวณ</button>
+    <button onclick="clearAll()">ล้างข้อมูล</button>
+  </div>
+
+  <!-- สรุปผล -->
+  <div id="dailyResult" class="result" style="display:none;"></div>
+  <div id="weeklyResult" class="result" style="display:none;"></div>
+</div>
+
+<script>
+function calculate(){
+  let oldDose = parseFloat(document.getElementById("oldDose").value) || 0;
+  let numDays = parseInt(document.getElementById("numDays").value) || 7;
+
+  // ---- แบบรายวัน ----
+  let total2 = 0, total3 = 0;
+  for(let i=0;i<7;i++){
+    total2 += parseFloat(document.getElementById("d2_"+i).value) || 0;
+    total3 += parseFloat(document.getElementById("d3_"+i).value) || 0;
+  }
+
+  // ---- แบบคูณวัน ----
+  let w3_total = ((parseFloat(document.getElementById("w3_line1").value)||0) * (parseFloat(document.getElementById("w3_day1").value)||0))
+               + ((parseFloat(document.getElementById("w3_line2").value)||0) * (parseFloat(document.getElementById("w3_day2").value)||0));
+  let w2_total = ((parseFloat(document.getElementById("w2_line1").value)||0) * (parseFloat(document.getElementById("w2_day1").value)||0))
+               + ((parseFloat(document.getElementById("w2_line2").value)||0) * (parseFloat(document.getElementById("w2_day2").value)||0));
+
+  total2 += w2_total;
+  total3 += w3_total;
+
+  let totalMg = total2*2 + total3*3;
+
+  if(totalMg>0){
+    let diff = totalMg - oldDose;
+    let percent = oldDose ? ((diff/oldDose)*100).toFixed(1) : 0;
+
+    // คำนวณจำนวนเม็ดตามวันนัด
+    let pills2 = Math.ceil(total2 * numDays / 7);
+    let pills3 = Math.ceil(total3 * numDays / 7);
+
+    document.getElementById("dailyResult").style.display="block";
+    document.getElementById("dailyResult").innerHTML =
+      `<h3>สรุปผลรวม</h3>
+       รวม: ${totalMg.toFixed(1)} mg/สัปดาห์<br>
+       ผลต่าง: ${diff.toFixed(1)} mg (${percent}%)<br>
+       จำนวนเม็ดที่จะจ่าย (${numDays} วัน): 
+       2 mg = ${pills2} เม็ด, 
+       3 mg = ${pills3} เม็ด`;
   } else {
-    for (var i = wfdata.length - 1; i >= 0; i--) {
-      if (wfdata[i].mg >= mg_select) {
-        i_select = i;
-      }
-    }
+    document.getElementById("dailyResult").style.display="none";
   }
 
-  display_data(i_select);
-}
-function display_data( i_select ) {
-    sum_mg3 = 0;
-    sum_mg5 = 0;
+  // ---- แบบทางเลือก ----
+  let weekly2 = parseFloat(document.getElementById("weekly2").value) || 0;
+  let weekly3 = parseFloat(document.getElementById("weekly3").value) || 0;
+  let weeklyMg = weekly2*2 + weekly3*3;
 
-    for ( var i = 0; i < 7; i++ ) {
-        sum_mg3 += wfdata[ i_select ].pd[ i ].mg3;
-        sum_mg5 += wfdata[ i_select ].pd[ i ].mg5;
+  if(weeklyMg>0){
+    let diff2 = weeklyMg - oldDose;
+    let percent2 = oldDose ? ((diff2/oldDose)*100).toFixed(1) : 0;
 
-        $( "#d" + i ).html( '' );
-        if ( ( wfdata[ i_select ].pd[ i ].mg3 == 0 ) && ( wfdata[ i_select ].pd[ i ].mg5 == 0 ) ) {
-            $( "#d" + i ).html( 'OFF' );
-            continue;
-        }
+    let pills2b = Math.ceil(weekly2 * numDays / 7);
+    let pills3b = Math.ceil(weekly3 * numDays / 7);
 
-        //mg5 zone
-        var mg5 = wfdata[ i_select ].pd[ i ].mg5;
-        while ( 1 ) {
-            if ( mg5 == 0 ) {
-                break;
-            }
-            if ( mg5 > 4 ) {
-                $( "#d" + i ).append( '<img src="/assets/warfarin/r0.png" style="max-width: 20px;">' );
-                mg5 -= 4;
-            } else {
-                var mod = mg5 % 4;
-                $( "#d" + i ).append( '<img src="/assets/warfarin/r' + mod + '.png" style="max-width: 20px;">' );
-                break;
-            }
-        }
-
-        //mg3 zone
-        // (ส่วนนี้จะอยู่ในรูปถัดไป)
-    }
-function display_data(i_select) {
-    sum_mg3 = 0;
-    sum_mg5 = 0;
-
-    for (var i = 0; i < 7; i++) {
-        sum_mg3 += wfdata[i_select].pd[i].mg3;
-        sum_mg5 += wfdata[i_select].pd[i].mg5;
-
-        $("#d" + i).html('');
-        if ((wfdata[i_select].pd[i].mg3 == 0) && (wfdata[i_select].pd[i].mg5 == 0)) {
-            $("#d" + i).html('OFF');
-            continue;
-        }
-
-        // mg5 zone
-        var mg5 = wfdata[i_select].pd[i].mg5;
-        while (1) {
-            if (mg5 == 0) {
-                break;
-            }
-            if (mg5 > 4) {
-                $("#d" + i).append('<img src="/assets/warfarin/r0.png" style="max-width: 20px;">');
-                mg5 -= 4;
-            } else {
-                var mod = mg5 % 4;
-                $("#d" + i).append('<img src="/assets/warfarin/r' + mod + '.png" style="max-width: 20px;">');
-                break;
-            }
-        }
-
-        // mg3 zone
-        var mg3 = wfdata[i_select].pd[i].mg3;
-        while (1) {
-            if (mg3 == 0) {
-                break;
-            }
-            if (mg3 > 4) {
-                $("#d" + i).append('<img src="/assets/warfarin/b0.png" style="max-width: 20px;">');
-                mg3 -= 4;
-            } else {
-                var mod = mg3 % 4;
-                $("#d" + i).append('<img src="/assets/warfarin/b' + mod + '.png" style="max-width: 20px;">');
-                break;
-            }
-        }
-    }
-
-    calpill();
-    $("#doselist").val(wfdata[i_select].mg).trigger('change.select2');
-    $("#mg_txt").html(wfdata[i_select].mg);
-}
-function calpill() {
-    var pill3 = 0;
-    var pill5 = 0;
-    var wk = parseFloat( $( "#wkset" ).val() );
-
-    pill3 = Math.ceil( ( sum_mg3 / 4.0 ) * wk );
-    pill5 = Math.ceil( ( sum_mg5 / 4.0 ) * wk );
-
-    $( "#pill3mg" ).html( pill3 );
-    $( "#pill5mg" ).html( pill5 );
+    document.getElementById("weeklyResult").style.display="block";
+    document.getElementById("weeklyResult").innerHTML =
+      `<h3>สรุป (ทางเลือก)</h3>
+       รวม: ${weeklyMg.toFixed(1)} mg/สัปดาห์<br>
+       ผลต่าง: ${diff2.toFixed(1)} mg (${percent2}%)<br>
+       จำนวนเม็ดที่จะจ่าย (${numDays} วัน): 
+       2 mg = ${pills2b} เม็ด, 
+       3 mg = ${pills3b} เม็ด`;
+  } else {
+    document.getElementById("weeklyResult").style.display="none";
+  }
 }
 
-function init_data() {
-    $.post( "/warfarin/getwfdata", function ( data ) {
-        var obj = JSON.parse( data );
-
-        wfdata = obj;
-        init_doselist();
-    });
+function clearAll(){
+  const ids = document.querySelectorAll("input[type='number']");
+  ids.forEach(i => i.value = "");
+  document.getElementById("numDays").value = 7;
+  document.getElementById("dailyResult").style.display="none";
+  document.getElementById("weeklyResult").style.display="none";
 }
-
-function calpercen() {
-    var mg = parseFloat( $( "#wkdose" ).val() );
-    var txt_array = [ "mg_m20_txt", "mg_m10_txt", "mg_m5_txt", "mg_0_txt", "mg_p5_txt", "mg_p10_txt", "mg_p20_txt" ];
-
-    mg_list[ 0 ] = mg - ( mg * 0.2 );
-    mg_list[ 0 ] = ( Math.round( mg_list[ 0 ] * 100 ) / 100 ).toFixed( 2 );
-    $( "#" + txt_array[ 0 ] ).text( mg_list[ 0 ] );
-
-    mg_list[ 1 ] = mg - ( mg * 0.1 );
-    mg_list[ 1 ] = ( Math.round( mg_list[ 1 ] * 100 ) / 100 ).toFixed( 2 );
-    $( "#" + txt_array[ 1 ] ).text( mg_list[ 1 ] );
-
-    mg_list[ 2 ] = mg - ( mg * 0.05 );
-    mg_list[ 2 ] = ( Math.round( mg_list[ 2 ] * 100 ) / 100 ).toFixed( 2 );
-    $( "#" + txt_array[ 2 ] ).text( mg_list[ 2 ] );
-
-    mg_list[ 3 ] = mg;
-    mg_list[ 3 ] = ( Math.round( mg_list[ 3 ] * 100 ) / 100 ).toFixed( 2 );
-    $( "#" + txt_array[ 3 ] ).text( mg_list[ 3 ] );
-
-    mg_list[ 4 ] = mg + ( mg * 0.05 );
-    mg_list[ 4 ] = ( Math.round( mg_list[ 4 ] * 100 ) / 100 ).toFixed( 2 );
-    $( "#" + txt_array[ 4 ] ).text( mg_list[ 4 ] );
-
-    mg_list[ 5 ] = mg + ( mg * 0.1 );
-    mg_list[ 5 ] = ( Math.round( mg_list[ 5 ] * 100 ) / 100 ).toFixed( 2 );
-    $( "#" + txt_array[ 5 ] ).text( mg_list[ 5 ] );
-
-    mg_list[ 6 ] = mg + ( mg * 0.2 );
-    mg_list[ 6 ] = ( Math.round( mg_list[ 6 ] * 100 ) / 100 ).toFixed( 2 );
-    $( "#" + txt_array[ 6 ] ).text( mg_list[ 6 ] );
-}
-    mg_list[ 3 ] = mg;
-    mg_list[ 3 ] = ( Math.round( mg_list[ 3 ] * 100 ) / 100 ).toFixed( 2 );
-    $( "#" + txt_array[ 3 ] ).text( mg_list[ 3 ] );
-
-    mg_list[ 4 ] = mg + ( mg * 0.05 );
-    mg_list[ 4 ] = ( Math.round( mg_list[ 4 ] * 100 ) / 100 ).toFixed( 2 );
-    $( "#" + txt_array[ 4 ] ).text( mg_list[ 4 ] );
-
-    mg_list[ 5 ] = mg + ( mg * 0.1 );
-    mg_list[ 5 ] = ( Math.round( mg_list[ 5 ] * 100 ) / 100 ).toFixed( 2 );
-    $( "#" + txt_array[ 5 ] ).text( mg_list[ 5 ] );
-
-    mg_list[ 6 ] = mg + ( mg * 0.2 );
-    mg_list[ 6 ] = ( Math.round( mg_list[ 6 ] * 100 ) / 100 ).toFixed( 2 );
-    $( "#" + txt_array[ 6 ] ).text( mg_list[ 6 ] );
+</script>
+</body>
+</html>
