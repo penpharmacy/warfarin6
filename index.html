@@ -63,7 +63,7 @@
   button {
     background: #ec407a;
     color: white;
-    padding: 10px 18px;
+    padding: 8px 14px;
     border: none;
     border-radius: 10px;
     margin-top: 10px;
@@ -85,6 +85,9 @@
     border-radius: 10px;
     padding: 8px;
     text-align: center;
+  }
+  .line {
+    margin-bottom: 5px;
   }
 </style>
 </head>
@@ -113,13 +116,26 @@
   <div class="section-wrapper">
     <div class="section">
       <h3>คำนวณจำนวนเม็ดแบบคูณวัน (แบบที่2)</h3>
-      <label>Warfarin 3 mg</label><br>
-      จำนวนเม็ด: <input type="number" step="0.5" id="w3_line1"> × วันใน 7 วัน <input type="number" step="0.5" id="w3_day1"><br>
-      จำนวนเม็ด: <input type="number" step="0.5" id="w3_line2"> × วันใน 7 วัน <input type="number" step="0.5" id="w3_day2"><br><br>
 
-      <label>Warfarin 2 mg</label><br>
-      จำนวนเม็ด: <input type="number" step="0.5" id="w2_line1"> × วันใน 7 วัน <input type="number" step="0.5" id="w2_day1"><br>
-      จำนวนเม็ด: <input type="number" step="0.5" id="w2_line2"> × วันใน 7 วัน <input type="number" step="0.5" id="w2_day2">
+      <label>Warfarin 3 mg</label>
+      <div id="w3Container">
+        <div class="line">
+          จำนวนเม็ด: <input type="number" step="0.5" class="w3_line"> × วันใน 7 วัน
+          <input type="number" step="0.5" class="w3_day">
+        </div>
+      </div>
+      <button type="button" onclick="addRow('w3')">+ เพิ่มแถว Warfarin 3 mg</button>
+
+      <br><br>
+
+      <label>Warfarin 2 mg</label>
+      <div id="w2Container">
+        <div class="line">
+          จำนวนเม็ด: <input type="number" step="0.5" class="w2_line"> × วันใน 7 วัน
+          <input type="number" step="0.5" class="w2_day">
+        </div>
+      </div>
+      <button type="button" onclick="addRow('w2')">+ เพิ่มแถว Warfarin 2 mg</button>
     </div>
     <div id="multiResult" class="result-box"></div>
   </div>
@@ -145,6 +161,17 @@
 </div>
 
 <script>
+function addRow(type) {
+  const container = document.getElementById(type + "Container");
+  const div = document.createElement("div");
+  div.classList.add("line");
+  div.innerHTML = `
+    จำนวนเม็ด: <input type="number" step="0.5" class="${type}_line"> × วันใน 7 วัน
+    <input type="number" step="0.5" class="${type}_day">
+  `;
+  container.appendChild(div);
+}
+
 function calculate(){
   let oldDose = parseFloat(document.getElementById("oldDose").value) || 0;
   let numDays = parseFloat(document.getElementById("numDays").value) || 7;
@@ -173,17 +200,27 @@ function calculate(){
   } else document.getElementById("dailyResult").style.display="none";
 
   // --- คูณวัน ---
-  let w3_total = ((parseFloat(document.getElementById("w3_line1").value)||0)*(parseFloat(document.getElementById("w3_day1").value)||0))
-               + ((parseFloat(document.getElementById("w3_line2").value)||0)*(parseFloat(document.getElementById("w3_day2").value)||0));
-  let w2_total = ((parseFloat(document.getElementById("w2_line1").value)||0)*(parseFloat(document.getElementById("w2_day1").value)||0))
-               + ((parseFloat(document.getElementById("w2_line2").value)||0)*(parseFloat(document.getElementById("w2_day2").value)||0));
-  let totalMultiMg = w3_total*3 + w2_total*2;
-  if(totalMultiMg>0){
+  let w3_lines = document.querySelectorAll(".w3_line");
+  let w3_days = document.querySelectorAll(".w3_day");
+  let w2_lines = document.querySelectorAll(".w2_line");
+  let w2_days = document.querySelectorAll(".w2_day");
+
+  let w3_total = 0, w2_total = 0;
+
+  for (let i = 0; i < w3_lines.length; i++) {
+    w3_total += (parseFloat(w3_lines[i].value) || 0) * (parseFloat(w3_days[i].value) || 0);
+  }
+  for (let i = 0; i < w2_lines.length; i++) {
+    w2_total += (parseFloat(w2_lines[i].value) || 0) * (parseFloat(w2_days[i].value) || 0);
+  }
+
+  let totalMultiMg = w3_total * 3 + w2_total * 2;
+  if (totalMultiMg > 0) {
     let diff = totalMultiMg - oldDose;
-    let percent = oldDose ? ((diff/oldDose)*100).toFixed(1) : 0;
+    let percent = oldDose ? ((diff / oldDose) * 100).toFixed(1) : 0;
     let w2Dispense = Math.ceil(w2_total * ratio);
     let w3Dispense = Math.ceil(w3_total * ratio);
-    document.getElementById("multiResult").style.display="block";
+    document.getElementById("multiResult").style.display = "block";
     document.getElementById("multiResult").innerHTML =
       `<h4>สรุปคูณวัน (แบบที่2)</h4>
       ${totalMultiMg.toFixed(1)} mg/สัปดาห์<br>
@@ -191,7 +228,7 @@ function calculate(){
       <u>จำนวนเม็ดยาที่ต้องจ่าย (${numDays} วัน)</u><br>
       Warfarin 2 mg: ${w2Dispense} เม็ด<br>
       Warfarin 3 mg: ${w3Dispense} เม็ด`;
-  } else document.getElementById("multiResult").style.display="none";
+  } else document.getElementById("multiResult").style.display = "none";
 
   // --- รวมต่อสัปดาห์ ---
   let weekly2 = parseFloat(document.getElementById("weekly2").value) || 0;
@@ -221,6 +258,8 @@ function clearAll(){
 </script>
 </body>
 </html>
+
+
 
 
 
